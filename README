@@ -1,0 +1,39 @@
+#1. 执行编译或运行app前，source etc/bashrc
+#2. 代码包含两部分：库源代码和app源代码，前者在src/里面，后者在applications/里面
+#3. 编译时需要先编译库，目前需要手动一个一个库进行手动编译，找到库文件夹下面的dummyMake，先查看该目录下是否存在一个名为pre的文件，如果有，先执行文件里面的命令，然后执行make -f dummyMake
+./OSspecific/POSIX/dummyMake
+./OpenFOAM/dummyMake
+./Pstream/dummy/dummyMake
+./Pstream/mpi/dummyMake
+./TurbulenceModels/compressible/dummyMake
+./TurbulenceModels/turbulenceModels/dummyMake
+./conversion/dummyMake
+./dynamicFvMesh/dummyMake
+./dynamicMesh/dummyMake
+./fileFormats/dummyMake
+./finiteVolume/dummyMake
+./fvMotionSolver/dummyMake
+./fvOptions/dummyMake
+./lagrangian/basic/dummyMake
+./mesh/extrudeModel/dummyMake
+./meshTools/dummyMake
+./sampling/dummyMake
+./surfMesh/dummyMake
+./thermophysicalModels/basic/dummyMake
+./thermophysicalModels/reactionThermo/dummyMake
+./thermophysicalModels/solidSpecie/dummyMake
+./thermophysicalModels/solidThermo/dummyMake
+./thermophysicalModels/specie/dummyMake
+./thermophysicalModels/thermophysicalProperties/dummyMake
+./topoChangerFvMesh/dummyMake
+./transportModels/compressible/dummyMake
+./triSurface/dummyMake
+#4. 库之间有依赖关系，所以需要按一定的顺序编译，可以参考sonicDyMFoam.png
+#5. 编译完库之后，到applications下编译sonicDyMFoam
+#6. tutorial下面是movingCone例子
+
+Make/files包含了库所需的源文件和输出的库名称
+Make/options包含了所依赖的include文件和库
+在对Make/files里的文件列表进行提取时，注意注释行：/* */，和特殊文件: *.Cver，*.L，需要根据文件夹里的pre文件进行处理
+Pstream需要手动改dummyMake
+
