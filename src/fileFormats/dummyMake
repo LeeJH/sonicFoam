@@ -1,0 +1,23 @@
+LIB_SRC = /home/jiahuili/sonicfoam/src
+LIB_DIR = /home/jiahuili/sonicfoam/lib
+FOAM_LIBBIN = /home/jiahuili/sonicfoam/lib
+setWriters = sampledSetWriters
+LIB = $(FOAM_LIBBIN)/libfileFormats
+
+src = \
+vtk/vtkUnstructuredReader.C \
+nas/NASCore.C \
+starcd/STARCDCore.C \
+coordSet/coordSet.C \
+$(setWriters)/writers.C \
+$(setWriters)/ensight/ensightSetWriterRunTime.C \
+$(setWriters)/gnuplot/gnuplotSetWriterRunTime.C \
+$(setWriters)/jplot/jplotSetWriterRunTime.C \
+$(setWriters)/raw/rawSetWriterRunTime.C \
+$(setWriters)/vtk/vtkSetWriterRunTime.C \
+$(setWriters)/xmgrace/xmgraceSetWriterRunTime.C \
+$(setWriters)/csv/csvSetWriterRunTime.C \
+
+CFLAGS = -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100  -fPIC -I../OpenFOAM/lnInclude/ -I../OSspecific/POSIX/ -I./lnInclude -shared -Xlinker --add-needed -Xlinker --no-as-needed
+all:
+	g++ $(CFLAGS) $(src) $(EXE_INC) -L$(LIB_DIR) $(LIB_LIBS) -o $(LIB).so

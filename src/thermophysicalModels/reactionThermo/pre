@@ -1,0 +1,1 @@
+flex -+ -o chemistryReaders/chemkinReader/chemkinLexer.L.C -f chemistryReaders/chemkinReader/chemkinLexer.L

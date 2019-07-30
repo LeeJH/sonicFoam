@@ -1,0 +1,7 @@
+Make/files包含了库所需的源文件和输出的库名称
+Make/options包含了所依赖的include文件和库
+在对Make/files里的文件列表进行提取时，注意注释行：/* */，和特殊文件: *.Cver，*.L，需要根据文件夹里的pre文件进行处理
+Pstream需要手动改dummyMake
+运行时，
+export WM_PROJECT_DIR=/home/jiahuili/sonicfoam
+

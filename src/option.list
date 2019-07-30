@@ -1,0 +1,266 @@
++++++++++++++++++++++++++++++++++
+./OSspecific/POSIX/Make/options
+EXE_INC = $(COMP_FLAGS)
++++++++++++++++++++++++++++++++++
+./OpenFOAM/Make/options
+EXE_INC = \
+    -I$(OBJECTS_DIR)
+
+LIB_LIBS = \
+    $(FOAM_LIBBIN)/libOSspecific.o \
+    -L$(FOAM_LIBBIN)/dummy -lPstream \
+    -lz
++++++++++++++++++++++++++++++++++
+./Pstream/dummy/Make/options
++++++++++++++++++++++++++++++++++
+./Pstream/mpi/Make/options
+sinclude $(GENERAL_RULES)/mplib$(WM_MPLIB)
+sinclude $(RULES)/mplib$(WM_MPLIB)
+
+EXE_INC  = $(PFLAGS) $(PINC)
+LIB_LIBS = $(PLIBS)
++++++++++++++++++++++++++++++++++
+./TurbulenceModels/compressible/Make/options
+EXE_INC = \
+    -I../turbulenceModels/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidThermo/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidSpecie/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+
+LIB_LIBS = \
+    -lcompressibleTransportModels \
+    -lfluidThermophysicalModels \
+    -lsolidThermo \
+    -lsolidSpecie \
+    -lturbulenceModels \
+    -lspecie \
+    -lfiniteVolume \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./TurbulenceModels/turbulenceModels/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./conversion/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/fileFormats/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+LIB_LIBS = \
+    -lfileFormats \
+    -lfiniteVolume \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./dynamicFvMesh/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/dynamicMesh/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+LIB_LIBS = \
+    -ltriSurface \
+    -lmeshTools \
+    -ldynamicMesh \
+    -lfiniteVolume
++++++++++++++++++++++++++++++++++
+./dynamicMesh/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/mesh/extrudeModel/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -ltriSurface \
+    -lextrudeModel
++++++++++++++++++++++++++++++++++
+./fileFormats/Make/options
++++++++++++++++++++++++++++++++++
+./finiteVolume/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+
+LIB_LIBS = \
+    -lOpenFOAM \
+    -ltriSurface \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./fvOptions/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/sampling/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidThermo/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
+    -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -lsampling \
+    -lmeshTools \
+    -lturbulenceModels \
+    -lcompressibleTurbulenceModels
++++++++++++++++++++++++++++++++++
+./lagrangian/basic/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+LIB_LIBS = \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./mesh/extrudeModel/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/dynamicMesh/lnInclude
+
+LIB_LIBS = \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./meshTools/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/surfMesh/lnInclude \
+    -I$(LIB_SRC)/fileFormats/lnInclude
+
+LIB_LIBS = \
+    -ltriSurface \
+    -lsurfMesh \
+    -lfileFormats
++++++++++++++++++++++++++++++++++
+./sampling/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/surfMesh/lnInclude \
+    -I$(LIB_SRC)/fileFormats/lnInclude \
+    -I$(LIB_SRC)/triSurface/lnInclude \
+    -I$(LIB_SRC)/dynamicMesh/lnInclude \
+    -I$(LIB_SRC)/conversion/lnInclude \
+    -I$(LIB_SRC)/lagrangian/basic/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lsurfMesh \
+    -lfileFormats \
+    -ltriSurface \
+    -llagrangian \
+    -ldynamicMesh \
+    -lconversion
++++++++++++++++++++++++++++++++++
+./surfMesh/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/fileFormats/lnInclude
+
+LIB_LIBS = \
+    -lfileFormats
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/basic/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/thermophysicalProperties/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+LIB_LIBS = \
+    -lcompressibleTransportModels \
+    -lspecie \
+    -lthermophysicalProperties \
+    -lfiniteVolume \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/reactionThermo/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidSpecie/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+LIB_LIBS = \
+    -lcompressibleTransportModels \
+    -lfluidThermophysicalModels \
+    -lspecie \
+    -lsolidSpecie \
+    -lfiniteVolume
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/solidSpecie/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude
+
+LIB_LIBS = \
+    -lspecie
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/solidThermo/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidSpecie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/reactionThermo/lnInclude
+
+LIB_LIBS = \
+    -lmeshTools \
+    -lfiniteVolume \
+    -lspecie \
+    -lsolidSpecie \
+    -lfluidThermophysicalModels \
+    -lreactionThermophysicalModels
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/specie/Make/options
+LIB_LIBS = -lOpenFOAM
++++++++++++++++++++++++++++++++++
+./thermophysicalModels/thermophysicalProperties/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude
+
+LIB_LIBS = \
+    -lspecie
++++++++++++++++++++++++++++++++++
+./topoChangerFvMesh/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/dynamicFvMesh/lnInclude \
+    -I$(LIB_SRC)/dynamicMesh/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -ldynamicFvMesh \
+    -ldynamicMesh \
+    -lmeshTools
++++++++++++++++++++++++++++++++++
+./transportModels/compressible/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+LIB_LIBS = \
+    -lfiniteVolume
++++++++++++++++++++++++++++++++++
+./triSurface/Make/options
+EXE_INC = \
+    -I$(LIB_SRC)/fileFormats/lnInclude \
+    -I$(LIB_SRC)/surfMesh/lnInclude
+
+LIB_LIBS = \
+    -lfileFormats \
+    -lsurfMesh

@@ -1,0 +1,3 @@
+export WM_PROJECT_DIR=/home/jiahuili/sonicfoam
+export PATH=$PATH:$WM_PROJECT_DIR/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$WM_PROJECT_DIR/lib:$WM_PROJECT_DIR/lib/openmpi-system:$WM_PROJECT_DIR/lib/dummy

@@ -1,0 +1,1 @@
+sed -e 's!VERSION_STRING!6!' -e 's!BUILD_STRING!6-96e04780bfdb!' global/global.Cver > global/global.Cver.C

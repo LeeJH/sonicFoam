@@ -1,0 +1,4 @@
+/home/jiahuili/sonicfaom/src/fileFormats
+/home/jiahuili/sonicfoam/src/surfMesh
+/home/jiahuili/sonicfoam/src/triSurface
+/home/jiahuili/sonicfoam/src/meshTools

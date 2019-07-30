@@ -1,0 +1,43 @@
+LIB_SRC = /home/jiahuili/sonicfoam/src
+LIB_DIR = /home/jiahuili/sonicfoam/lib
+FOAM_LIBBIN = /home/jiahuili/sonicfoam/lib
+BCs = turbulentFluidThermoModels/derivedFvPatchFields
+LIB = $(FOAM_LIBBIN)/libcompressibleTurbulenceModels
+EXE_INC = \
+    -I../turbulenceModels/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidThermo/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidSpecie/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+
+LIB_LIBS = \
+    -lcompressibleTransportModels \
+    -lfluidThermophysicalModels \
+    -lsolidThermo \
+    -lsolidSpecie \
+    -lturbulenceModels \
+    -lspecie \
+    -lfiniteVolume \
+    -lmeshTools
+
+src = \
+compressibleTurbulenceModel.C \
+turbulentFluidThermoModels/turbulentFluidThermoModels.C \
+$(BCs)/temperatureCoupledBase/temperatureCoupledBase.C \
+$(BCs)/turbulentTemperatureCoupledBaffleMixed/turbulentTemperatureCoupledBaffleMixedFvPatchScalarField.C \
+$(BCs)/thermalBaffle1D/thermalBaffle1DFvPatchScalarFields.C \
+$(BCs)/totalFlowRateAdvectiveDiffusive/totalFlowRateAdvectiveDiffusiveFvPatchScalarField.C \
+$(BCs)/turbulentTemperatureRadCoupledMixed/turbulentTemperatureRadCoupledMixedFvPatchScalarField.C \
+$(BCs)/externalWallHeatFluxTemperature/externalWallHeatFluxTemperatureFvPatchScalarField.C \
+$(BCs)/wallHeatTransfer/wallHeatTransferFvPatchScalarField.C \
+$(BCs)/externalCoupledTemperatureMixed/externalCoupledTemperatureMixedFvPatchScalarField.C \
+$(BCs)/convectiveHeatTransfer/convectiveHeatTransferFvPatchScalarField.C \
+turbulentFluidThermoModels/derivedFvPatchFields/wallFunctions/alphatWallFunctions/alphatWallFunction/alphatWallFunctionFvPatchScalarField.C \
+turbulentFluidThermoModels/derivedFvPatchFields/wallFunctions/alphatWallFunctions/alphatJayatillekeWallFunction/alphatJayatillekeWallFunctionFvPatchScalarField.C \
+
+CFLAGS = -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100  -fPIC -I../OpenFOAM/lnInclude/ -I../OSspecific/POSIX/lnInclude -I./lnInclude -shared -Xlinker --add-needed -Xlinker --no-as-needed
+all:
+	g++ $(CFLAGS) $(src) $(EXE_INC) -I$(LIB_SRC)/OpenFOAM/lnInclude/ -I$(LIB_SRC)/OSspecific/POSIX/lnInclude -L$(LIB_DIR) $(LIB_LIBS) -o $(LIB).so
